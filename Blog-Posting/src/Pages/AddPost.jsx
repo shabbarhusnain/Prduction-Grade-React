@@ -1,8 +1,9 @@
 import React from 'react'
+import PostForm from '../Components/LogicalComponents/PostForm'
 
 function AddPost() {
   return (
-    <div>AddPost</div>
+    <div><PostForm/></div>
   )
 }
 

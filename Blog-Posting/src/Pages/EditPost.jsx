@@ -1,8 +1,9 @@
 import React from 'react'
+import PostForm from '../Components/LogicalComponents/PostForm'
 
-function EditPost() {
+function EditPost({post}) {
   return (
-    <div>EditPost</div>
+    <div><PostForm post={post}/></div>
   )
 }
 
