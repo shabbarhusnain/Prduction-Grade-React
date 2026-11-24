@@ -1,16 +1,28 @@
-# React + Vite
+# The Bloger's
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is only practice project to keep my learning and abilities.
 
-Currently, two official plugins are available:
+This project is develop in React+vite with appwrite backend integration.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Dependencies is used in this project
+<ol>
+<li>React Router Dom:
+    To create Routes, to acces that routs i used useNavigate and Link element.
+<li>React Reduxjs/Toolkit:</n>
+    For creating and configuring store to pass data in child components espacial state based user status and userData.
+<li>Ract Hook Form:
+    For State less submitting and to control editor...also using watch,get/set values, control
+<li>TinyMce Editor:
+    Add for edit or Write blog content...wrap with react hook form controller.
+<li>AppWrite:
+    a:Included Authentication singup/signout/sigmout form all/currentUser.
+    b:Included Databases create/read/delete/update/get/listDocument, upload/update/delete/viewFile.
+<li>Tailwindcss:
+    For ui used InLine Tailwindcss only desktop.</li>
+</ol>
+<img src="./images/Screenshot 2026-11-25 at 03.32.50.png">
+<img src="./images/Screenshot 2026-11-25 at 03.32.46.png">
+<img src="./images/Screenshot 2026-11-25 at 03.32.01.png">
+<img src="./images/Screenshot 2026-11-25 at 03.31.54.png">
+<img src="./images/Screenshot 2026-11-25 at 03.31.42.png">
+<img src="./images/Screenshot 2026-11-25 at 03.26.30.png">

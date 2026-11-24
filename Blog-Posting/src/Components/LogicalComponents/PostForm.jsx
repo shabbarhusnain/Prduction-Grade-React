@@ -59,7 +59,7 @@ function PostForm({post}) {
                 await authService.currentUser().then((prev)=>setNewPostUserID(prev.$id))
                 const uploaded = await databaseService.uploadFile(data.file[0]);
                 console.log("try wala chal giya jis upload na ye diya:",uploaded)
-                if (uploaded){
+                if (uploaded && newPostUserID){
                     
                     const posted = await databaseService.newPost({...data,featuredimage:uploaded.$id, userid:newPostUserID})
                     console.log("uploaded condition pass ka bad ab ya sa posted mila ha:",posted)
