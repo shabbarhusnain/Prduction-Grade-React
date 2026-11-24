@@ -8,6 +8,7 @@ import {Provider} from 'react-redux'
 import {RouterProvider} from 'react-router-dom'
 import {AddPost,AllPost,EditPost,Home,MyPost,Post,SigninPage,SignupPage,Signout} from './Pages/Index.js'
 import AuthLayer from './Components/AuthLayer.jsx'
+import DeletePost from './Pages/DeletePost.jsx'
 
 const Routes= createBrowserRouter(
   [{
@@ -30,15 +31,18 @@ const Routes= createBrowserRouter(
       },
       {
         path:'/edit-post/:id',
-        element:(<AuthLayer authentication to={'/edit-post/:id'}><EditPost/></AuthLayer>)
+        element:(<AuthLayer authentication to={'/edit-post/id'}><EditPost/></AuthLayer>)
+      },{
+        path:'/delete-post/:id',
+        element:(<AuthLayer authentication to={'/delete-post/id'}><DeletePost/></AuthLayer>)
       },
       {
-        path:'/my-post/:id',
-        element:(<AuthLayer authentication to={'/my-post/:id'}><MyPost/></AuthLayer>)
+        path:'/my-post',
+        element:(<AuthLayer authentication to={'/my-post'}><MyPost/></AuthLayer>)
       },
       {
-        path:'/post',
-        element:(<AuthLayer authentication to={'/post'}><Post/></AuthLayer>)
+        path:'/post/:id',
+        element:(<AuthLayer authentication to={'/post/:id'}><Post/></AuthLayer>)
       },{
         path:'/signin-page',
         element:(<AuthLayer authentication={false} ><SigninPage/></AuthLayer>)

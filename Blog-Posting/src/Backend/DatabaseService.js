@@ -11,10 +11,10 @@ class DatabaseService{
         this.database = new Databases(this.client)
         this.storage = new Storage(this.client)
     };
-    async newPost({title,content,slug,featuredimage,userid}){
+    async newPost({title,content,slug,featuredimage,status,userid}){
         try {
-            await this.database.createDocument(appwriteDatabaseId,appwriteCollectionId,slug,{
-                title,content,featuredimage,userid})
+            return await this.database.createDocument(appwriteDatabaseId,appwriteCollectionId,slug,{
+                title,content,featuredimage,status,userid})
         } catch (error) {
             throw error
         }
@@ -33,9 +33,9 @@ class DatabaseService{
             throw error
         }
     };
-    async singlePost(slug){
+    async singlePost(id){
         try {
-            return await this.database.getDocument(appwriteDatabaseId,appwriteCollectionId,slug)           
+            return this.database.getDocument(appwriteDatabaseId,appwriteCollectionId,id)           
         } catch (error) {
             throw error
          }
@@ -49,7 +49,7 @@ class DatabaseService{
     };
     async uploadFile(file){
         try {
-            await this.storage.createFile(appwriteBucketId,ID.unique(),file)
+            return await this.storage.createFile(appwriteBucketId,ID.unique(),file)
         } catch (error) {
             throw error  
         }

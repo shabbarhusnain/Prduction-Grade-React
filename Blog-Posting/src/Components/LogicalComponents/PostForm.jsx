@@ -6,18 +6,22 @@ import TextEditor from './textEditor.jsx'
 import { useNavigate } from 'react-router-dom'
 import Input from '../components/Input'
 import Button from '../components/Button'
+import authService from '../../Backend/AuthService.js'
 function PostForm({post}) {
     const {formState:{isSubmitting},watch,register,handleSubmit,setValue,control,getValues,onChange}=useForm({
         defaultValues:{
             title:post?.title||"",
             content:post?.content || "",
             slug:post?.$id || "",
-            status:post?.status || ""
+            status:post?.status || "",
+            featuredimage:post?.featuredimage||""
         }
     })
     const navigate =useNavigate()
     const [url,setUrl]=useState("")
     const [preview, setPreview] =useState(null)
+    const [newPostUserID,setNewPostUserID]=useState("")
+
     useEffect(()=>{
         if(post){
             setUrl("")
@@ -30,15 +34,19 @@ function PostForm({post}) {
             throw error
         }
     }},[])
+
+    
     const Submit = async (data)=>{ 
+        console.log("form wala data:",data);
         if (post){
+            const id= post.userid
             try {
                 const uploded=await databaseService.uploadFile(data.file[0])
                 if (uploded){
                     await databaseService.deleteFile(post.featuredimage)
-                    await databaseService.updatePost(post.$id,{...data, featuredimage:uploded.$id})
-                    const url=
-                    navigate(`/post/:${post.$id}`)
+                    await databaseService.updatePost(post.$id,{...data, featuredimage:uploded.$id, userid:id})
+
+                    navigate(`/post/${post.$id}`)
                 }else{
                     navigate('/')
                 };
@@ -46,12 +54,19 @@ function PostForm({post}) {
                 throw error
             };
         }else{
+            console.log("ye else wala chal giya ha")
             try {
-                const uploded = await databaseService.uploadFile(data.file[0]);
-                if (uploded){
-                    const posted = await databaseService.newPost({...data,featuredimage:uploded.$id})
+                await authService.currentUser().then((prev)=>setNewPostUserID(prev.$id))
+                const uploaded = await databaseService.uploadFile(data.file[0]);
+                console.log("try wala chal giya jis upload na ye diya:",uploaded)
+                if (uploaded){
+                    
+                    const posted = await databaseService.newPost({...data,featuredimage:uploaded.$id, userid:newPostUserID})
+                    console.log("uploaded condition pass ka bad ab ya sa posted mila ha:",posted)
+                    console.log("isi posted walay ma database ko ye uploaded.$id ye ja rahi ha:",uploaded.$id)
                     if(posted){
-                        navigate(`/post/:${posted.$id}`)
+                        console.log("hm na posted ki condition pass kar li ha matla data chala giya ha")
+                        navigate(`/post/${posted.$id}`)
                     };
                 };
             } catch (error) {

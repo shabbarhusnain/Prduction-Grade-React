@@ -20,7 +20,7 @@ const navitems=[
   {
     id:"04",
     name:"My Posts",
-    slug:'/my-post/:id',
+    slug:'/my-post',
     status:isactive
   },
   {

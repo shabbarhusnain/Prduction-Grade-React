@@ -13,8 +13,10 @@ const [isloading, setIsLoading] = useState(true)
 
 const dispatch= useDispatch()
 const navigate =useNavigate()
-useEffect(()=>{async()=>{
-  const user=await authService.currentUser()
+useEffect(()=>{ 
+  const checkuser = async()=>{
+  const user =await authService.currentUser()
+  // console.log("user : ",user)
   if (user){
     dispatch(login({user}))
     navigate('/')
@@ -23,6 +25,8 @@ useEffect(()=>{async()=>{
   }
   
 }
+checkuser()
+// console.log("user  :", checkuser)
 return setIsLoading(false)},[])
 
   return (<>{isloading? 
